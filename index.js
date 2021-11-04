@@ -1,5 +1,6 @@
 const express = require('express');
 const expressSession = require('express-session');
+const flash = require('connect-flash');
 // const path = require('path');
 const ejs = require('ejs');
 // const bodyParser = require('body-parser');
@@ -34,6 +35,7 @@ app.use('*', (req, res, next) => {
 });
 
 app.set('view engine', 'ejs');
+app.use(flash());
 app.use(fileUpload());
 app.use(express.static('public'));
 app.use(express.json());
