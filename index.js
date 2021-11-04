@@ -26,7 +26,8 @@ mongoose.connect('mongodb://localhost/my_database', {
 global.loggedIn = null;
 
 app.use('*', (req, res, next) => {
-  loggedIn = req.session.userId;
+  console.log({ loggedIn: global.loggedIn });
+  loggedIn = Boolean(req.session?.userId);
 
   next();
 });
@@ -39,8 +40,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   expressSession({
     secret: 'keyboard cat',
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
   })
 );
 
