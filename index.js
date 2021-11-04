@@ -14,6 +14,7 @@ const storeUserController = require('./controllers/storeUser');
 const newPostController = require('./controllers/newPost');
 const loginController = require('./controllers/login');
 const loginUserController = require('./controllers/loginUser');
+const logoutController = require('./controllers/logout');
 const validateMiddleware = require('./middleware/validationMiddleware');
 const authMiddleware = require('./middleware/authMiddleware');
 const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthenticatedMiddleware');
@@ -60,6 +61,8 @@ app.get('/', homeController);
 
 app.get('/post/:id', getPostController);
 
+app.get('/auth/logout', logoutController);
+
 // Create new post
 
 app.get('/posts/new', authMiddleware, newPostController);
@@ -77,6 +80,8 @@ app.post(
   redirectIfAuthenticatedMiddleware,
   loginUserController
 );
+
+app.use((req, res) => res.render('notfound'));
 
 app.listen(4000, () => {
   console.log('App listening on port 4000');
