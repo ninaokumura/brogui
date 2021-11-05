@@ -2,7 +2,6 @@ const express = require('express');
 const expressSession = require('express-session');
 const flash = require('connect-flash');
 // const path = require('path');
-const dotenv = require('dotenv');
 const ejs = require('ejs');
 // const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -22,10 +21,13 @@ const authMiddleware = require('./middleware/authMiddleware');
 const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthenticatedMiddleware');
 const app = new express();
 
-const result = dotenv.config();
+if (process.env.NODE_ENV !== 'production') {
+  const dotenv = require('dotenv');
+  const result = dotenv.config();
 
-if (result.error) {
-  throw result.error;
+  if (result.error) {
+    throw result.error;
+  }
 }
 
 const uri = `mongodb+srv://nina:${process.env.MONGODB_PASSWORD}@cluster0.u5zz8.mongodb.net/${process.env.MONGODB_DB}?retryWrites=true&w=majority`;
@@ -97,5 +99,4 @@ app.use((req, res) => res.render('notfound'));
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
-  console.log(result);
 });
