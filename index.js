@@ -97,4 +97,5 @@ app.use((req, res) => res.render('notfound'));
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
+  console.log(result);
 });
