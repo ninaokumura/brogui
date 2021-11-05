@@ -28,6 +28,8 @@ if (process.env.NODE_ENV !== 'production') {
   if (result.error) {
     throw result.error;
   }
+} else {
+  console.log(process.env);
 }
 
 const uri = `mongodb+srv://nina:${process.env.MONGODB_PASSWORD}@cluster0.u5zz8.mongodb.net/${process.env.MONGODB_DB}?retryWrites=true&w=majority`;
