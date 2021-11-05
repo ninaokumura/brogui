@@ -2,6 +2,7 @@ const express = require('express');
 const expressSession = require('express-session');
 const flash = require('connect-flash');
 // const path = require('path');
+const dotenv = require('dotenv');
 const ejs = require('ejs');
 // const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -21,7 +22,15 @@ const authMiddleware = require('./middleware/authMiddleware');
 const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthenticatedMiddleware');
 const app = new express();
 
-mongoose.connect('mongodb://localhost/my_database', {
+const result = dotenv.config();
+
+if (result.error) {
+  throw result.error;
+}
+
+const uri = `mongodb+srv://nina:${process.env.MONGODB_PASSWORD}@cluster0.u5zz8.mongodb.net/${process.env.MONGODB_DB}?retryWrites=true&w=majority`;
+
+mongoose.connect(uri, {
   useNewUrlParser: true,
 });
 
