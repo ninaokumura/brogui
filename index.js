@@ -41,7 +41,7 @@ mongoose.connect(uri, {
 global.loggedIn = null;
 
 app.use('*', (req, res, next) => {
-  console.log({ loggedIn: global.loggedIn });
+  // console.log({ loggedIn: global.loggedIn });
   loggedIn = Boolean(req.session?.userId);
 
   next();
@@ -61,12 +61,12 @@ app.use(
   })
 );
 
-const customMiddleWare = (req, res, next) => {
-  console.log('Custom middle ware called');
-  next();
-};
+// const customMiddleWare = (req, res, next) => {
+//   console.log('Custom middle ware called');
+//   next();
+// };
+// app.use(customMiddleWare);
 app.use('/posts/store', validateMiddleware);
-app.use(customMiddleWare);
 
 app.get('/auth/register', redirectIfAuthenticatedMiddleware, newUserController);
 
