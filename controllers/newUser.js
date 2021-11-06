@@ -1,6 +1,4 @@
-const flash = require('connect-flash');
 module.exports = (req, res) => {
-  console.log('new user');
   let username = '';
   let password = '';
   const data = req.flash('data')[0];
@@ -9,10 +7,10 @@ module.exports = (req, res) => {
     username = data.username;
     password = data.password;
   }
-  const errors = flash('validationErrors');
+  const errors = req.flash('validationErrors');
 
   res.render('register', {
-    errors: Array.isArray(errors) ? errors : [],
+    errors: errors,
     username: username,
     password: password,
   });
