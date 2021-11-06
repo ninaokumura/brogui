@@ -6,6 +6,6 @@ References: Beginning Node.js, Express, Mongodb development by Greg Lim
 
 Features to be implemented:
 
--[] Delete posts
--[] Edit post
--[] Pagination
+- [ ] Delete posts
+- [ ] Edit post
+- [ ] Pagination
