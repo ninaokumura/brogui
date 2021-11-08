@@ -33,11 +33,19 @@
         </div>
       </div>
     </article>
-    <div class="btn-container">
-      <a class="btn btn-primary text-uppercase" href="/pots/:id/edit">Edit</a>
-      <!-- <a class="btn btn-primary text-uppercase" href="/posts/:id/delete"
-        >Delete</a
-      > -->
+    <hr class="my-4" />
+    <!-- Pager-->
+    <div class="mb-4 d-flex justify-content-end btn-container">
+      <a
+        class="btn btn-primary my-btn text-uppercase"
+        href="/posts/<%= blogpost.id %>/edit"
+        >Edit</a
+      >
+      <form method="POST" action="/posts/<%= blogpost.id %>/delete">
+        <button type="submit" class="btn btn-primary my-btn text-uppercase">
+          Delete
+        </button>
+      </form>
     </div>
     <!-- Footer-->
     <%- include('layouts/footer') -%>
