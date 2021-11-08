@@ -11642,7 +11642,6 @@ header.masthead .post-heading .meta a {
 
 /* My style */
 
-.btn-container {
-  display: grid;
-  place-items: center;
+.my-btn {
+  margin-right: 60px;
 }

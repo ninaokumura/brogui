@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('layouts/header') -%>
+  <body>
+    <!-- Navigation-->
+    <%- include('layouts/navbar') -%>
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('<%= image %>')">
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="page-heading">
+              <h1>Edit Post</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content-->
+    <main class="mb-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <% if(errors != null && errors.length > 0){ %>
+            <ul class="list-group">
+              <% for (var i = 0; i < errors.length; i++) { %>
+              <li class="list-group-item list-group-item-danger">
+                <%= errors[i] %>
+              </li>
+              <% } %>
+            </ul>
+            <% } %>
+            <form
+              action="/posts/<%= id %>/edit"
+              method="POST"
+              enctype="multipart/form-data"
+            >
+              <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                  <label>Title</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Title"
+                    id="title"
+                    name="title"
+                    value="<%= title %>"
+                  />
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                  <label>Description</label>
+                  <textarea rows="5" class="form-control" id="body" name="body">
+<%= body %></textarea
+                  >
+                  <script>
+                    $('#body').summernote({
+                      placeholder: 'Start typing your awesome blog post',
+                      tabsize: 2,
+                      height: 200,
+                    });
+                  </script>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                  <label>Image</label>
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="image"
+                    name="image"
+                  />
+                </div>
+              </div>
+
+              <br />
+
+              <div class="form-group">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  id="sendMessageButton"
+                >
+                  Send
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+    </main>
+    <!-- Footer-->
+    <%- include('layouts/footer') -%>
+    <!-- Bootstrap core JS-->
+    <%- include('layouts/scripts') -%>
+
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+  </body>
+</html>
